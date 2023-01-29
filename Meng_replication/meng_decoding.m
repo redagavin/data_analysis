@@ -4,7 +4,7 @@
 %% Extract behavioral data from raw data, clean up
 clc;
 clear all;
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 
 %% parameter
 PARAM = struct();
@@ -135,7 +135,7 @@ save(fullfile(folder, 'Position_Data_Processed.mat'),'Position_Data');
 %% Extract Spike Data
 clc;
 clear all;
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 
 %% parameter
 
@@ -253,7 +253,7 @@ save(fullfile(folder, 'Spike_Data_Processed.mat'),'Spike_Data', 'Excitatory_Neur
 %% Spike and Position data integration
 clc;
 clear all;
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 
 %% load position and spike data
 
@@ -285,7 +285,7 @@ save(fullfile(folder, 'Spike_Information.mat'),'Spike_Information');
 %% Place Field
 clc;
 clear all;
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 
 %% parameter and loading
 
@@ -394,7 +394,7 @@ end
 %% Global Theta Filtered LFP
 clc;
 clear all;
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 
 %% parameter and loading
 
@@ -503,7 +503,7 @@ save(fullfile(folder,'LFP_Left_Theta.mat'),'LFP_Left_Theta','-v7.3');
 %% Theta Oscillation Properties
 clc;
 clear all;
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 
 %% parameter and loading
 load('Spike_Data_Processed.mat');
@@ -621,7 +621,7 @@ save('Decoding_Spike_Index','Decoding_Spike_Index','Position_Data_For_Shuffles',
 %% Decode linear theta sequences
 clc;
 clear all;
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 
 %% Parameter and Loading
 
