@@ -5,8 +5,8 @@ clear all;
 load Spike_Data_Processed.mat
 load Position_Data_Processed.mat
 
-bin_size = 100;
-stride = 1;
+bin_size = 1;
+stride = 0.1;
 
 %% Bin
 
