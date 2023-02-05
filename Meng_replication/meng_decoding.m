@@ -555,7 +555,6 @@ clear Participating_Spikes_With_Inhibitory_Neurons;
 clear N;
 clear Max_Number_Of_Spikes_Per_Decoding_Window
 
-% problem is here!!!!!
 Current_Line=1;
 while max(Decoding_Spike_Index(Current_Line,:))>0
     Current_Line=Current_Line+1;
@@ -563,6 +562,7 @@ end
 Decoding_Spike_Index=Decoding_Spike_Index(1:(Current_Line-1),:);
 clear Current_Line;
 
+% problem is here!!!
 All_Data_To_Add=zeros(size(Decoding_Times,1),2);
 parfor N=1:size(Decoding_Times,1)  
     Data_To_Add=Theta(find(abs(Theta(:,1)-Decoding_Times(N,1))==min(abs(Theta(:,1)-Decoding_Times(N,1))),1,'first'),2:3);
