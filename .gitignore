@@ -4,3 +4,12 @@
 Matlab framework
 Sample_codes
 Tmaze_Data
+
+# tmp files
+*/__pycache__/
+
+# scratch notebook
+load_.ipynb
+
+# data
+*.pkl
