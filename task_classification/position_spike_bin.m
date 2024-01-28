@@ -5,8 +5,11 @@ clear all;
 load Spike_Data_Separated.mat
 load Position_Data_Separated.mat
 
-bin_size = 1;
-stride = 0.1;
+bin_size = 0.05;
+stride = 0.05;
+
+Gausswin_size = 1;
+Gausswin_sd = 0.05;
 
 %% Bin
 Spike_Data_Bin = {};
@@ -72,14 +75,38 @@ for k = 1:length(Position_Data_Sep)
     
     end
 
+    for i = 1:size(Spikes, 2)
+
+        %kernel smoothing
+        gauss_window = Gausswin_size/bin_size;
+        gauss_SD = Gausswin_sd/bin_size;
+        gk = gausskernel(gauss_window, gauss_SD)';
+
+        Spikes(:,i) = conv2(Spikes(:,i),gk,'same');
+        
+    end
+
+    % make spike count into firing rate
+    Spikes = Spikes/bin_size;
+
+    % normalize
+    Spikes = zscore(Spikes, 0, 1);
+
+    %pca
+    [coeff, score, latent, tsquared, explained] = pca(Spikes);
+    Spikes = Spikes * coeff(:, 1:40);
+
+
     Spike_Data_Bin{k} = Spikes;
     Position_Data_Bin{k} = Position;
     Speed_Data_Bin{k} = Speed;
 
 end
 
+[Spike_Data_Bin, trans] = hyperalign(Spike_Data_Bin{:});
+
 %% Save the data
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 save(fullfile(folder, "Spike_Data_Binned.mat"), "Spike_Data_Bin", "-v7");
 save(fullfile(folder, "Speed_Data_Binned.mat"), "Position_Data_Bin", "-v7");
 save(fullfile(folder, "Position_Data_Binned.mat"), "Speed_Data_Bin", "-v7");

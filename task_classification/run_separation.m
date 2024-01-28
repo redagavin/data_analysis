@@ -31,6 +31,6 @@ for i = 1:length(Position_Data)
 end
 
 %% Save the data
-folder = 'D:\memolab\data_analysis\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
+folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
 save(fullfile(folder, "Spike_Data_Separated.mat"), "Spike_Data_Sep");
 save(fullfile(folder, "Position_Data_Separated.mat"), "Position_Data_Sep")
