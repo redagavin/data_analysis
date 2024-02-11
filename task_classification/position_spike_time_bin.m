@@ -13,8 +13,17 @@ Gausswin_sd = 0.05;
 
 %% Bin
 Spike_Data_Bin = {};
-Postion_Data_Bin = {};
+Position_Data_Bin = {};
 Speed_Data_Bin = {};
+
+Spike_Data_Bin_Right = {};
+Position_Data_Bin_Right = {};
+Speed_Data_Bin_Right = {};
+
+Spike_Data_Bin_Left = {};
+Position_Data_Bin_Left = {};
+Speed_Data_Bin_Left = {};
+
 
 % for each run-through, we bin the data
 for k = 1:length(Position_Data_Sep)
@@ -96,7 +105,6 @@ for k = 1:length(Position_Data_Sep)
     [coeff, score, latent, tsquared, explained] = pca(Spikes);
     Spikes = Spikes * coeff(:, 1:40);
 
-
     Spike_Data_Bin{k} = Spikes;
     Position_Data_Bin{k} = Position;
     Speed_Data_Bin{k} = Speed;
@@ -105,10 +113,24 @@ end
 
 [Spike_Data_Bin, trans] = hyperalign(Spike_Data_Bin{:});
 
+% separate them into left and right groups
+
+criterion = cellfun(@(x) any(x > 250), Position_Data_Bin);
+Position_Data_Bin_Left = Position_Data_Bin(criterion);
+Speed_Data_Bin_Left = Speed_Data_Bin(criterion);
+Spike_Data_Bin_Left = Spike_Data_Bin(criterion);
+Position_Data_Bin_Right = Position_Data_Bin(~criterion);
+Speed_Data_Bin_Right = Speed_Data_Bin(~criterion);
+Spike_Data_Bin_Right = Spike_Data_Bin(~criterion);
+
+
 %% Save the data
 folder = '..\Tmaze_Data\252-1375\2018-01-07_15-14-54\04_tmaze1';
-save(fullfile(folder, "Spike_Data_Binned.mat"), "Spike_Data_Bin", "-v7");
-save(fullfile(folder, "Speed_Data_Binned.mat"), "Position_Data_Bin", "-v7");
-save(fullfile(folder, "Position_Data_Binned.mat"), "Speed_Data_Bin", "-v7");
+save(fullfile(folder, "Spike_Data_Binned_Left.mat"), "Spike_Data_Bin_Left", "-v7");
+save(fullfile(folder, "Speed_Data_Binned_Left.mat"), "Speed_Data_Bin_Left", "-v7");
+save(fullfile(folder, "Position_Data_Binned_Left.mat"), "Position_Data_Bin_Left", "-v7");
+save(fullfile(folder, "Spike_Data_Binned_Right.mat"), "Spike_Data_Bin_Right", "-v7");
+save(fullfile(folder, "Speed_Data_Binned_Right.mat"), "Speed_Data_Bin_Right", "-v7");
+save(fullfile(folder, "Position_Data_Binned_Right.mat"), "Position_Data_Bin_Right", "-v7");
 
 
